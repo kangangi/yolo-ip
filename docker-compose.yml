@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: yolo_backend
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./backend:/app
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: yolo_client
+    ports:
+      - '3000:3000'
+    stdin_open: true
+
