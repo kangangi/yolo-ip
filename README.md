@@ -1,23 +1,28 @@
-# Requirements
-Make sure that you have the following installed:
-- [node](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) 
-- npm 
-- [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and start the mongodb service with `sudo service mongod start`
+# Yolo App
+Nodejs, React and MongoDB e-commerce feature project
 
-## Navigate to the Client Folder 
- `cd client`
+## Set up 
+#### Clone the project 
+SSH: 
+    `git clone git@github.com:kangangi/yolo-ip.git`
 
-## Run the folllowing command to install the dependencies 
- `npm install`
+HTTPS:
+    `git clone https://github.com/kangangi/yolo-ip.git`
 
-## Run the folllowing to start the app
- `npm start`
 
-## Open a new terminal and run the same commands in the backend folder
- `cd ../backend`
+#### Set up database and environment variables
+This project uses [MongoDB Atlas](https://www.mongodb.com/atlas/database) 
+Set up your account and replace your MONGO_URI in the backend [Dockerfile](/backend/Dockerfile) as follows
+    `ENV MONGODB_URI=mongodb+srv://<your_username>:<yourpassword>@cluster0.jsqhtza.mongodb.net/?retryWrites=true&w=majority`
 
- `npm install`
+#### Build and run the project
+To build the project:
+    `docker-compose build`
 
- `npm start`
+To run the project:
+`docker-compose up`
 
- ### Go ahead a nd add a product (note that the price field only takes a numeric input)
+You can now access the application on 
+`localhost:3000`
+
+Go ahead a add a product (note that the price field only takes a numeric input)
