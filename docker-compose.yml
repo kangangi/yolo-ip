@@ -21,7 +21,7 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
-    image: kangangi/yolo_client:v1.0
+    image: kangangi/yolo_client:v1.3
     container_name: yolo_client
     ports:
       - '3000:3000'
