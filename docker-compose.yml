@@ -3,11 +3,31 @@ networks:
   yolo_network:
     driver: bridge
 
+volumes:
+  mongodb_data:
+    driver: local
+
 services:
-  backend:
+  db:
+    container_name: yolo_mongodb
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: DockerfileMongo
+    image: kangangi/yolo_mongo_db:v1.0
+    ports:
+      - '27017:27017'
+    networks:
+      - yolo_network
+    volumes:
+      - mongodb_data:/data/db
+
+  backend:
+
+    build:
+      context: ./backend
+      dockerfile: DockerfileNode
+    environment:
+      - MONGO_URI=mongodb://db:27017/yolomy
     image: kangangi/yolo_backend:v1.1
     container_name: yolo_backend
     ports:
@@ -16,6 +36,8 @@ services:
       - ./backend:/app
     networks:
       - yolo_network
+    depends_on:
+      - db
     
   client:
     build:
