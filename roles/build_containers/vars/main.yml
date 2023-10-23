@@ -1,0 +1,5 @@
+---
+network: yolomy_network
+frontend: yolomy_client
+backend: yolomy_backend
+db: yolomy_mongodb
