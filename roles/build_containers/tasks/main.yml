@@ -36,8 +36,8 @@
       - '3000:3000'
     networks:
       - name: yolomy_network
-    command: "npm start"
     restart_policy: always
+    tty: yes
 
 
 - name: Run Mongo DB Container
