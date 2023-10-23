@@ -1,0 +1,74 @@
+- name: Create a Yolomy data volume
+  docker_volume:
+    name: yolomy_volume
+    state: present
+
+
+- name: Create a Yolomy network
+  docker_network:
+    name: yolomy_network
+    state: present
+    attachable: true
+
+
+- name: Pull client image from repository
+  docker_image:
+    name: kangangi/yolo_client:v1.3
+    source: pull
+
+- name: Pull backend image from repository
+  docker_image:
+    name: kangangi/yolo_backend:v1.1
+    source: pull
+
+- name: Pull mongodb image from repository
+  docker_image:
+    name: mongo:latest
+    source: pull
+
+
+- name: Run React Client App Container
+  docker_container:
+    name: yolo_client_container
+    image: kangangi/yolo_client:v1.3
+    state: started
+    ports: 
+      - '3000:3000'
+    networks:
+      - name: yolomy_network
+    command: "npm start"
+    restart_policy: always
+
+
+- name: Run Mongo DB Container
+  docker_container:
+    name: yolo_mongo_db_container
+    image: mongo:latest
+    state: started
+    ports:
+      - '27017:27017'
+    networks:
+      - name: yolomy_network
+    volumes:
+      - yolomy_volume:/data/db
+    restart_policy: always
+
+
+- name: Run Node Container
+  docker_container:
+    name: yolo_backend_container
+    image: kangangi/yolo_backend:v1.1
+    state: started
+    env :
+      MONGO_URI: mongodb://db:27017/yolomy
+    ports:
+      - '5000:5000'
+    volumes:
+      - yolomy_volume:/data/app
+    networks:
+      - name: yolomy_network
+    links:
+      - yolo_mongo_db_container:db
+    restart_policy: always
+
+

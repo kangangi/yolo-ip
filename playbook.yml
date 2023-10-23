@@ -1,6 +1,8 @@
 - name: Yolomy Application
   hosts: all
   become: yes
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
   roles:
    - install_docker
-   - create_docker_volumes_and_networks
+   - build_containers
