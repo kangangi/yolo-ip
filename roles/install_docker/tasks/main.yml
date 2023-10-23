@@ -30,3 +30,13 @@
 
 - name: Change User Permissions
   shell: "usermod -aG docker vagrant"
+
+- name: Install Pip
+  apt:
+    name: python3-pip
+    state: present
+
+- name: install docker-py package
+  pip: 
+    name: docker-py
+    state: present

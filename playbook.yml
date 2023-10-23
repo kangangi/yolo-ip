@@ -3,3 +3,4 @@
   become: yes
   roles:
    - install_docker
+   - create_docker_volumes_and_networks
