@@ -46,13 +46,17 @@
     image: mongo:latest
     state: started
     ports:
-      - '27017:27017'
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
     networks:
       - name: yolomy_network
-    volumes:
-      - yolomy_volume:/data/db
-    restart_policy: always
 
+
+- name: Wait for MongoDB to be ready
+  wait_for:
+    port: 27017
+    timeout: 60
 
 - name: Run Node Container
   docker_container:
@@ -64,11 +68,10 @@
     ports:
       - '5000:5000'
     volumes:
-      - yolomy_volume:/data/app
+      - ./backend:/app
     networks:
       - name: yolomy_network
     links:
       - yolo_mongo_db_container:db
-    restart_policy: always
 
 
