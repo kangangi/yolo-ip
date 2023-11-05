@@ -14,7 +14,14 @@ spec:
     spec:
       containers:
       - name: backend
-        image: kangangi/yolo_backend:v1.1
+        image: kangangi/yolo_backend:v1.2
+        env:
+        - name: MONGO_HOST
+          value: mongodb
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_DB
+          value: "yolomy"
         resources:
           limits:
             memory: "128Mi"
