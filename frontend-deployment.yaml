@@ -14,9 +14,12 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: kangangi/yolo_client:v1.3
+        image: kangangi/yolo_client:v3
         stdin: true
         tty: true
+        env: 
+        - name: BACKEND_API_URL
+          value: "http://34.81.178.64:5000"
         ports:
         - containerPort: 3000
 
