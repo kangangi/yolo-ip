@@ -12,12 +12,13 @@ const productRoute = require('./routes/api/productRoute');
 const app = express()
 
 // Connecting to the Database
-let mongodb_url = 'mongodb://db:27017/';
-let dbName = 'yolomy';
+const mongoHost = process.env.MONGO_HOST
+const mongoPort = process.env.MONGO_PORT || 27017;
+const dbName = process.env.MONGO_DB || 'yolomy';
 
-// define a url to connect to the database
-const MONGODB_URI = process.env.MONGODB_URI || mongodb_url + dbName
-mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true  } )
+const mongoURI = `mongodb://${mongoHost}:${mongoPort}/${dbName}`;
+
+mongoose.connect(mongoURI ,{useNewUrlParser: true, useUnifiedTopology: true  } )
 let db = mongoose.connection;
 
 // Check Connection
