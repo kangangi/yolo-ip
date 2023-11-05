@@ -1,6 +1,9 @@
 # Yolo App
 Nodejs, React and MongoDB e-commerce feature project
 
+Deployed application: 
+    `http://35.201.151.143:3000/`
+
 ## Set up 
 ### Clone the project 
 SSH: 
