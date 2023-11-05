@@ -43,8 +43,9 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
-    image: kangangi/yolo_client:v1.3
+    image: kangangi/yolo_client:v1.4
     container_name: yolo_client
+    command: ["npm", "start"]
     ports:
       - '3000:3000'
     networks:

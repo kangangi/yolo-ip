@@ -15,10 +15,8 @@ spec:
       containers:
       - name: frontend
         image: kangangi/yolo_client:v1.3
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        stdin: true
+        tty: true
         ports:
         - containerPort: 3000
 
