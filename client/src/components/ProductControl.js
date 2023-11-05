@@ -79,7 +79,7 @@ class ProductControl extends Component {
     }
     
     componentDidMount(){
-        axios.get(process.env.BACKEND_API_URL + '/api/products')
+        axios.get('http://34.81.178.64:5000/api/products')
             .then(res =>{
                 console.log(res)
                 this.setState({
@@ -158,14 +158,14 @@ class ProductControl extends Component {
         //     console.log(pair[0]+ ', ' + pair[1]); 
         // }       
         // console.log(...formData)
-        axios.post(process.env.BACKEND_API_URL + '/api/products', newProduct)
+        axios.post('http://34.81.178.64:5000/api/products', newProduct)
             .then(res => console.log(res.data))
         this.setState({
             formVisibleOnPage: false
         })
     };
     handleDeletingProduct = (id) =>{
-        axios.delete(process.env.BACKEND_API_URL + '/api/products/'+id)
+        axios.delete('http://34.81.178.64:5000/api/products/'+id)
             .then(res => console.log(res.data))
             .catch((error) =>{
                 console.log(error)
@@ -185,7 +185,7 @@ class ProductControl extends Component {
     }
     handleEditingProduct = (editedProduct) =>{
 
-        axios.put(process.env.BACKEND_API_URL + '/api/products/' + this.state.selectedProduct._id, editedProduct)
+        axios.put('http://34.81.178.64:5000/api/products/' + this.state.selectedProduct._id, editedProduct)
             .then(res =>console.log(res.data))
         
         this.setState({

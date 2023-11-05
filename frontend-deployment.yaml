@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: kangangi/yolo_client:v3
+        image: kangangi/yolo_client:v3.2
         stdin: true
         tty: true
         env: 
