@@ -22,10 +22,6 @@ spec:
           value: "27017"
         - name: MONGO_DB
           value: "yolomy"
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 5000
 
@@ -33,9 +29,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  type: LoadBalancer
   name: backend-service
 spec:
+  type: LoadBalancer
   selector:
     app: backend
   ports:
